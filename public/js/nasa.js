@@ -11,5 +11,11 @@ $(document).ready(function() {
      }
  });
 
- 
+ $(".generateLink").click(function(event){
+     $(".imageLink").text("https://bit.ly/3t6wOwE")
+     $(".imageLink").css("display", "block");
+ });
+    
+    
 });
+

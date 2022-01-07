@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 app.set("view engine","ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', async(req, res) => {
@@ -62,6 +62,8 @@ async function createCard() {
         <p class='card-text'>${data.date}</p>
         </div>
         <button class = "like-button">Like</button>
+        <button class = "generateLink">Generate link for image</button>
+        <p style = "display:none" class = "text-center imageLink"></p>
         </div>
         </div>`;
     }
@@ -76,6 +78,8 @@ async function createCard() {
         <p class='card-text'>${data.date}</p>
         </div>
         <button class = "like-button">Like</button>
+        <button class = "generateLink">Generate link for image</button>
+        <p style = "display:none" class = "text-center imageLink"></p>
         </div>
         </div>`
     }
@@ -90,6 +94,8 @@ async function createCard() {
             <p class='card-text'>${data.date}</p>
           </div>
         <button class = "like-button">Like</button>
+        <button class = "generateLink">Generate link for image</button>
+        <p style = "display:none" class = "text-center imageLink"></p>
     </div>
     </div>`;
     }
