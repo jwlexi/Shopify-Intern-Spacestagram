@@ -6,12 +6,8 @@ app.use(express.static("public"));
 
 
 app.get('/', async(req, res) => {
-    let date = await randomDate(new Date(2012, 0, 1), new Date())
-    console.log(date);
-    let url = `https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U&date=${date}`;
-    let data = await getData(url);
-    
-    res.render('nasa', {"nasaIMG": data.url});
+    let cards = await createCards();
+    res.render('nasa', {"reports": JSON.stringify(cards)});
 });
 
 async function getData(url){
@@ -25,9 +21,9 @@ app.listen(3000, () => {
 });
 
 async function randomDate(start, end) {
-  // YYYY-MM-DD FORMAT
-    // retrieve random date between 01 Jan 1995 ~ 31 Dec 2021
-    let rndYear = Math.floor(Math.random() * (2022 - 1995)) + 1995,
+    // YYYY-MM-DD FORMAT
+    // retrieve random date between 01 Jan 1996 ~ 31 Dec 2021
+    let rndYear = Math.floor(Math.random() * (2022 - 1996)) + 1996,
           rndMonth = Math.floor(Math.random() * (13 - 1)) + 1,
           rndDay = Math.floor(Math.random() * (31 - 1)) + 1;
 
@@ -48,14 +44,66 @@ async function randomDate(start, end) {
     return `${year}-${month}-${day}`;
 }
 
-// Generate API Key
-// Your API key for alexisanchez@csumb.edu is:
+async function createCard() {
+    let date = await randomDate(new Date(2012, 0, 1), new Date())
+    let url = `https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U&date=${date}`;
+    let data = await getData(url);
+    let title =  data.title;
+    if(String(data.url).includes("youtube")){
+        card =
+        `<div class="col-lg p-2">
+        <div class='card report-card shadow' style = "border-radius:2%;">
+        <iframe width="420" height="315"
+        src="${data.url}">
+        </iframe>
+        <div class='card-body'>
+        <h5 class='card-title'>${title}</h5>
+        <p class='card-text'>${data.explanation}</p>
+        <p class='card-text'>${data.date}</p>
+        </div>
+        <button class = "like-button">Like</button>
+        </div>
+        </div>`;
+    }
+    else if(String(data.url).includes("vimeo")){
+        card =
+        `<div class="col-lg p-2">
+        <div class='card report-card shadow' style = "border-radius:2%;">
+        <p class="text-center">${data.url}</p>
+        <div class='card-body'>
+        <h5 class='card-title'>${title}</h5>
+        <p class='card-text'>${data.explanation}</p>
+        <p class='card-text'>${data.date}</p>
+        </div>
+        <button class = "like-button">Like</button>
+        </div>
+        </div>`
+    }
+    else {
+        card =
+    `<div class="col-lg p-2">
+    <div class='card report-card shadow' style = "border-radius:2%;">
+        <img src="${data.url}" class="card-img-top cardsImages" alt="Report Image">
+          <div class='card-body'>
+            <h5 class='card-title'>${title}</h5>
+            <p class='card-text'>${data.explanation}</p>
+            <p class='card-text'>${data.date}</p>
+          </div>
+        <button class = "like-button">Like</button>
+    </div>
+    </div>`;
+    }
+    
+    return card;
+}
 
-// k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U
-// You can start using this key to make web service requests. Simply pass your key in the URL when making a web request. Here's an example:
+async function createCards() {
+  cards = [];
+  let card = "";
+  for (let i = 0; i < 10; i++) {
+    card = await createCard();
+    cards.push(card);
+  }
 
-// https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U
-// For additional support, please contact us. When contacting us, please tell us what API you're accessing and provide the following account details so we can quickly find you:
-
-// Account Email: alexisanchez@csumb.edu
-// Account ID: 90e596be-c322-44eb-987f-c633b9e8289e
+  return cards;
+}
