@@ -60,7 +60,7 @@ async function createCard() {
     let url = `https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U&date=${date}`;
     let data = await getData(url);
     let title =  data.title;
-    if(String(data.url).includes("youtube")){
+    if(String(data.url).includes("youtube") || String(data.url).includes("vimeo")){
         card =
         `<div class="col-lg p-2">
         <div class='card shadow' style = "border-radius:2%;">
@@ -72,23 +72,9 @@ async function createCard() {
         <p class='card-text'>${data.explanation}</p>
         <p class='card-text'>${data.date}</p>
         </div>
-        <button class = "like-button btn">Like</button>
+        <i onClick="myFunction(this)" class="fa fa-thumbs-up"></i>
         </div>
         </div>`;
-    }
-    else if(String(data.url).includes("vimeo")){
-        card =
-        `<div class="col-lg p-2">
-        <div class='card shadow' style = "border-radius:2%;">
-        <p class="text-center">${data.url}</p>
-        <div class='card-body'>
-        <h5 class='card-title'>${title}</h5>
-        <p class='card-text'>${data.explanation}</p>
-        <p class='card-text'>${data.date}</p>
-        </div>
-        <button class = "like-button btn">Like</button>
-        </div>
-        </div>`
     }
     else {
         card =
@@ -100,7 +86,7 @@ async function createCard() {
             <p class='card-text'>${data.explanation}</p>
             <p class='card-text'>${data.date}</p>
           </div>
-        <button class = "like-button btn">Like</button>
+        <i onClick="myFunction(this)" class="fa fa-thumbs-up"></i>
         <button class = "btn getImageLink">Share</button>
         <small class="imageLink text-center" style = "display:none;">
         </small>

@@ -21,3 +21,15 @@ $(document).ready(function() {
 
 });
 
+function myFunction(x) {
+    x.classList.toggle("fa-thumbs-down");
+    let isItDown = document.getElementsByClassName('fa-thumbs-down');
+    if(isItDown.length > 0) {
+        x.style.color = 'red';
+    }
+    else {
+        x.style.color = 'blue'
+    }
+    
+    
+}
