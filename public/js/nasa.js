@@ -10,12 +10,5 @@ $(document).ready(function() {
          $(this).css("background-color","transparent");
      }
  });
-
- $(".generateLink").click(function(event){
-     $(".imageLink").text("https://bit.ly/3t6wOwE")
-     $(".imageLink").css("display", "block");
- });
-    
     
 });
-

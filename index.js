@@ -57,7 +57,7 @@ async function createCard() {
     if(String(data.url).includes("youtube")){
         card =
         `<div class="col-lg p-2">
-        <div class='card report-card shadow' style = "border-radius:2%;">
+        <div class='card shadow' style = "border-radius:2%;">
         <iframe width="420" height="315"
         src="${data.url}">
         </iframe>
@@ -66,41 +66,35 @@ async function createCard() {
         <p class='card-text'>${data.explanation}</p>
         <p class='card-text'>${data.date}</p>
         </div>
-        <button class = "like-button">Like</button>
-        <button class = "generateLink">Generate link for image</button>
-        <p style = "display:none" class = "text-center imageLink"></p>
+        <button class = "like-button btn">Like</button>
         </div>
         </div>`;
     }
     else if(String(data.url).includes("vimeo")){
         card =
         `<div class="col-lg p-2">
-        <div class='card report-card shadow' style = "border-radius:2%;">
+        <div class='card shadow' style = "border-radius:2%;">
         <p class="text-center">${data.url}</p>
         <div class='card-body'>
         <h5 class='card-title'>${title}</h5>
         <p class='card-text'>${data.explanation}</p>
         <p class='card-text'>${data.date}</p>
         </div>
-        <button class = "like-button">Like</button>
-        <button class = "generateLink">Generate link for image</button>
-        <p style = "display:none" class = "text-center imageLink"></p>
+        <button class = "like-button btn">Like</button>
         </div>
         </div>`
     }
     else {
         card =
     `<div class="col-lg p-2">
-    <div class='card report-card shadow' style = "border-radius:2%;">
-        <img src="${data.url}" class="card-img-top cardsImages" alt="Report Image">
+    <div class='card shadow' style = "border-radius:2%;">
+        <img src="${data.url}" class="card-img-top cardsImages" alt="Space Image">
           <div class='card-body'>
             <h5 class='card-title'>${title}</h5>
             <p class='card-text'>${data.explanation}</p>
             <p class='card-text'>${data.date}</p>
           </div>
-        <button class = "like-button">Like</button>
-        <button class = "generateLink">Generate link for image</button>
-        <p style = "display:none" class = "text-center imageLink"></p>
+        <button class = "like-button btn">Like</button>
     </div>
     </div>`;
     }
@@ -111,7 +105,7 @@ async function createCard() {
 async function createCards() {
   cards = [];
   let card = "";
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     card = await createCard();
     cards.push(card);
   }
