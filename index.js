@@ -12,12 +12,18 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', async(req, res) => {
     let cards = await createCards();
-    res.render('nasa', {"reports": JSON.stringify(cards)});
+    let moreCards = await createCards();
+    let moreCards3 = await createCards();
+    res.render('nasa', {"reports": JSON.stringify(cards), "reports2": JSON.stringify(moreCards), "reports3": JSON.stringify(moreCards3)});
 });
+
+async function testing() {
+    let i = 0;
+}
 
 async function getData(url){
     let response = await fetch(url);
-    let data     = await response.json();
+    let data = await response.json();
     return data;
 }
 
@@ -88,13 +94,16 @@ async function createCard() {
         card =
     `<div class="col-lg p-2">
     <div class='card shadow' style = "border-radius:2%;">
-        <img src="${data.url}" class="card-img-top cardsImages" alt="Space Image">
+        <img id = "spaceImage" src="${data.url}" class="card-img-top cardsImages" alt="Space Image">
           <div class='card-body'>
             <h5 class='card-title'>${title}</h5>
             <p class='card-text'>${data.explanation}</p>
             <p class='card-text'>${data.date}</p>
           </div>
         <button class = "like-button btn">Like</button>
+        <button class = "btn getImageLink">Share</button>
+        <small class="imageLink text-center" style = "display:none;">
+        </small>
     </div>
     </div>`;
     }
@@ -105,7 +114,7 @@ async function createCard() {
 async function createCards() {
   cards = [];
   let card = "";
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 2; i++) {
     card = await createCard();
     cards.push(card);
   }

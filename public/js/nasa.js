@@ -10,5 +10,14 @@ $(document).ready(function() {
          $(this).css("background-color","transparent");
      }
  });
-    
+
+ $(".getImageLink").click(function(){
+    let imgname = $(this).closest('div').find(".cardsImages").attr('src');
+    $(this).closest('div').find(".imageLink").text(imgname);
+    $(this).closest('div').find(".imageLink").css("display", "block");
+    $(this).closest('div').find(".imageLink").css("width", "20em");
+     $(this).closest('div').find(".imageLink").css("margin", "0 auto");
+ });
+
 });
+

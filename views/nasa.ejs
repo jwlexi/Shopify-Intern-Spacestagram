@@ -8,13 +8,23 @@
 <main>
     <div class="container">
       <div class="row">
-        <aside class="col-sm"></aside>
-        <article class="col-sm">
+        <aside class="col-sm" id = "cards1">
+            <% for (report of JSON.parse(reports2)) {%>
+              <%- report %> 
+            <% } %>
+        </article>
+        </aside>
+        <article class="col-sm" id = "cards2">
           <% for (report of JSON.parse(reports)) {%>
               <%- report %> 
             <% } %>
         </article>
-        <aside class="col-sm"></aside>
+        <aside class="col-sm" id = "cards3">
+            <% for (report of JSON.parse(reports3)) {%>
+              <%- report %> 
+            <% } %>
+        </article>
+        </aside>
       </div>
     </div>
 </main>
