@@ -1,21 +1,18 @@
 <%- include('partials/header.ejs')  %>
 <script src="/js/nasa.js" defer></script>
-</head>
-<body>
-    
+</header>
+<main>
     <h1 class = "text-center">Spacestagram</h1>
     <div class="container">
       <div class="row">
-        <div class="col-sm">
-        </div>
+        <aside class="col-sm"></aside>
         <div class="col-sm">
           <% for (report of JSON.parse(reports)) {%>
               <%- report %> 
             <% } %>
         </div>
-        <div class="col-sm">
-        </div>
+        <aside class="col-sm"></aside>
       </div>
-</div>
-</body>
+    </div>
+</main>
 </html>

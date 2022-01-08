@@ -1,3 +1,8 @@
+// Hello! I used Replit to build my project because I find it very convenient compared to other hosting sites. 
+// You can run the website by simply clicking "run" at the top. 
+// My Github link is: https://github.com/jwlexi/Shopify-Intern-Spacestagram
+// I really loved doing this and would love to build more applications with you guys :)
+
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
