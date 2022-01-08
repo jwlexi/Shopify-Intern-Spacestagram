@@ -6,27 +6,23 @@
         <img src = "https://freepngimg.com/download/space/23041-1-nasa-image.png" width = 70px height = 55px>
         <button class = "btn btn-dark" onClick="window.location.reload();" id = "refreshButton"> Click me to see more </button>
     </nav>
-<main>
-    <div class="container">
+<main class = "container">
       <div class="row">
-        <aside class="col-sm" id = "cards1">
+        <article class="col-sm" id = "cards1">
             <% for (report of JSON.parse(reports2)) {%>
               <%- report %> 
             <% } %>
         </article>
-        </aside>
         <article class="col-sm" id = "cards2">
           <% for (report of JSON.parse(reports)) {%>
               <%- report %> 
             <% } %>
         </article>
-        <aside class="col-sm" id = "cards3">
+        <article class="col-sm" id = "cards3">
             <% for (report of JSON.parse(reports3)) {%>
               <%- report %> 
             <% } %>
         </article>
-        </aside>
       </div>
-    </div>
 </main>
 </html>

@@ -17,19 +17,17 @@ app.get('/', async(req, res) => {
     res.render('nasa', {"reports": JSON.stringify(cards), "reports2": JSON.stringify(moreCards), "reports3": JSON.stringify(moreCards3)});
 });
 
-async function testing() {
-    let i = 0;
-}
+app.listen(3000, () => {
+   console.log('server started');
+});
+
+// functions 
 
 async function getData(url){
     let response = await fetch(url);
     let data = await response.json();
     return data;
 }
-
-app.listen(3000, () => {
-   console.log('server started');
-});
 
 async function randomDate(start, end) {
     // YYYY-MM-DD FORMAT
@@ -56,10 +54,10 @@ async function randomDate(start, end) {
 }
 
 async function createCard() {
-    let date = await randomDate(new Date(2012, 0, 1), new Date())
+    let date = await randomDate(new Date(1996, 1, 1), new Date())
     let url = `https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U&date=${date}`;
     let data = await getData(url);
-    let title =  data.title;
+    
     if(String(data.url).includes("youtube") || String(data.url).includes("vimeo")){
         card =
         `<div class="col-lg p-2">
@@ -68,11 +66,11 @@ async function createCard() {
         src="${data.url}">
         </iframe>
         <div class='card-body'>
-        <h5 class='card-title'>${title}</h5>
+        <h5 class='card-title'>${data.title}</h5>
         <p class='card-text'>${data.explanation}</p>
         <p class='card-text'>${data.date}</p>
         </div>
-        <i onClick="myFunction(this)" class="fa fa-thumbs-up"></i>
+        <i onClick="like(this)" class="fa fa-thumbs-up"></i>
         </div>
         </div>`;
     }
@@ -82,11 +80,11 @@ async function createCard() {
     <div class='card shadow' style = "border-radius:2%;">
         <img id = "spaceImage" src="${data.url}" class="card-img-top cardsImages" alt="Space Image">
           <div class='card-body'>
-            <h5 class='card-title'>${title}</h5>
+            <h5 class='card-title'>${data.title}</h5>
             <p class='card-text'>${data.explanation}</p>
             <p class='card-text'>${data.date}</p>
           </div>
-        <i onClick="myFunction(this)" class="fa fa-thumbs-up"></i>
+        <i onClick="like(this)" class="fa fa-thumbs-up"></i>
         <button class = "btn getImageLink">Share</button>
         <small class="imageLink text-center" style = "display:none;">
         </small>

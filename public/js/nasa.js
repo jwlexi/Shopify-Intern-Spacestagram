@@ -1,6 +1,4 @@
 $(document).ready(function() {
-
-
     
  $(".like-button").click(function(event){
      if($(this).text() == "Like") {
@@ -23,13 +21,10 @@ $(document).ready(function() {
 
 });
 
-function myFunction(x) {
-    x.classList.toggle("fa-thumbs-down");
-    let isItDown = document.getElementsByClassName('fa-thumbs-down');
-    if(isItDown.length > 0) {
-        x.style.color = 'red';
-    }
-    else {
-        x.style.color = 'blue'
+function like(x) {
+    x.classList.toggle("turnBlue");
+    let isItBlue = document.getElementsByClassName('turnBlue');
+    if(isItBlue > 0) {
+        x.style.color = 'transparent';
     }
 }
