@@ -22,7 +22,6 @@ app.listen(3000, () => {
 });
 
 // functions 
-
 async function getData(url){
     let response = await fetch(url);
     let data = await response.json();
@@ -57,22 +56,39 @@ async function createCard() {
     let date = await randomDate(new Date(1996, 1, 1), new Date())
     let url = `https://api.nasa.gov/planetary/apod?api_key=k5GAqQW09GS6X9dGsbHEOlvjFewdqYZmkCBWhM6U&date=${date}`;
     let data = await getData(url);
-    
-    if(String(data.url).includes("youtube") || String(data.url).includes("vimeo")){
+    if(String(data.url).includes("youtube") || String(data.url).includes("vimeo") || String(data.url).includes("ustream")){
         card =
         `<div class="col-lg p-2">
-        <div class='card shadow' style = "border-radius:2%;">
-        <iframe width="420" height="315"
-        src="${data.url}">
-        </iframe>
-        <div class='card-body'>
-        <h5 class='card-title'>${data.title}</h5>
-        <p class='card-text'>${data.explanation}</p>
-        <p class='card-text'>${data.date}</p>
-        </div>
-        <i onClick="like(this)" class="fa fa-thumbs-up"></i>
-        </div>
+            <div class='card shadow' style = "border-radius:2%;">
+                <iframe width="420" height="315"
+                src="${data.url}">
+                </iframe>
+                    <div class='card-body'>
+                        <h5 class='card-title'>${data.title}</h5>
+                        <p class='card-text'>${data.explanation}</p>
+                        <p class='card-text'>${data.date}</p>
+                    </div>
+                <i onClick="like(this)" class="fa fa-thumbs-up"></i>
+            </div>
         </div>`;
+    }
+    else if(String(data.media_type).includes("other")) {
+        card =
+        `<div class="col-lg p-2">
+            <div class='card shadow' style = "border-radius:2%;">
+                <p class = "text-center">No image found</p>
+                    <div class='card-body'>
+                        <h5 class='card-title'>${data.title}</h5>
+                        <p class='card-text'>${data.explanation}</p>
+                        <p class='card-text'>${data.date}</p>
+                    </div>
+                <i onClick="like(this)" class="fa fa-thumbs-up"></i>
+            </div>
+        </div>`;
+    }
+    else if(String(data.title).includes("undefined") && String(data.url).includes("undefined")) {
+        card =
+        ``;
     }
     else {
         card =

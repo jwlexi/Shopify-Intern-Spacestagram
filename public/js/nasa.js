@@ -19,6 +19,10 @@ $(document).ready(function() {
      $(this).closest('div').find(".imageLink").css("margin", "0 auto");
  });
 
+ $("#refreshButton").click(function(){
+    $("#subtitle").text("Loading...Please Wait");
+ });
+
 });
 
 function like(x) {
