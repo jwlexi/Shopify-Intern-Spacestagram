@@ -1,5 +1,7 @@
 $(document).ready(function() {
- 
+
+
+    
  $(".like-button").click(function(event){
      if($(this).text() == "Like") {
          $(this).html("Unlike");
@@ -30,6 +32,4 @@ function myFunction(x) {
     else {
         x.style.color = 'blue'
     }
-    
-    
 }
